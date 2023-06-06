@@ -1,6 +1,10 @@
 const express = require("express");
 const mongodb = require("mongodb");
 const cors = require("cors");
+const corsOptions = {
+  origin: "https://sobreloja-mongo-b1gjrekhz-mstju.vercel.app",
+  optionsSuccessStatus: 200,
+};
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 
@@ -15,7 +19,7 @@ const client = new MongoClient(uri, {
 });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.post("/submit", async (req, res) => {
   try {
